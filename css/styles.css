@@ -1,0 +1,133 @@
+
+/* Fuente personalizada desde Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+* {box-sizing: border-box;}
+body {font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;background-color: #f0f2f5;color: #333;min-height: 100vh;}
+
+/* -------------- BARRA DE NAVEGACIÓN -------------- */
+.navbar-custom {background: linear-gradient(135deg, #1a237e 0%, #283593 50%, #3949ab 100%);border: none;box-shadow: 0 2px 10px rgba(26, 35, 126, 0.4);margin-bottom: 0;}
+.navbar-custom .navbar-brand {color: #fff !important;font-weight: 700;font-size: 18px;letter-spacing: 0.5px;}
+.navbar-custom .navbar-brand span {color: #7986cb;}
+.navbar-custom .navbar-nav > li > a {color: rgba(255, 255, 255, 0.85) !important;font-weight: 500;transition: color 0.2s ease;}
+.navbar-custom .navbar-nav > li > a:hover {color: #fff !important;background: rgba(255, 255, 255, 0.1) !important;}
+
+/* -------------- CABECERA / HERO -------------- */
+.page-hero {background: linear-gradient(135deg, #1a237e 0%, #3949ab 60%, #5c6bc0 100%);color: #fff;padding: 48px 0 40px;margin-bottom: 40px;box-shadow: 0 4px 20px rgba(26, 35, 126, 0.3);}
+.page-hero h1 {font-size: 2rem;font-weight: 700;margin: 0 0 10px;letter-spacing: -0.5px;}
+.page-hero p {font-size: 1rem;opacity: 0.85;margin: 0;font-weight: 300;}
+.page-hero .hero-icon {font-size: 3rem;margin-bottom: 16px;display: block;opacity: 0.9;}
+
+/* -------------- TARJETAS / PANELES -------------- */
+.card-custom {background-color: #fff;border-radius: 10px;box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);padding: 32px;margin-bottom: 28px;border: 1px solid #e8eaf6;transition: box-shadow 0.3s ease;}
+.card-custom:hover {box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);}
+.card-custom .card-title {font-size: 1.1rem;font-weight: 600;color: #1a237e;margin-bottom: 20px;padding-bottom: 12px;border-bottom: 2px solid #e8eaf6;display: flex;align-items: center;gap: 8px;}
+
+/* -------------- ZONA DE CARGA DE IMAGEN (DROP ZONE) -------------- */
+.drop-zone {border: 2.5px dashed #9fa8da;border-radius: 10px;padding: 48px 24px;text-align: center;cursor: pointer;background-color: #f5f6ff;transition: all 0.3s ease;position: relative;margin-bottom: 20px;}
+.drop-zone:hover,
+.drop-zone.drag-over {border-color: #3949ab;background-color: #ede7f6;transform: translateY(-2px);box-shadow: 0 6px 20px rgba(57, 73, 171, 0.15);}
+.drop-zone .drop-icon {font-size: 3.5rem;color: #7986cb;display: block;margin-bottom: 16px;transition: transform 0.3s ease;}
+.drop-zone:hover .drop-icon {transform: scale(1.1);}
+.drop-zone .drop-title {font-size: 1.1rem;font-weight: 600;color: #3949ab;margin-bottom: 8px;display: block;}
+.drop-zone .drop-subtitle {font-size: 0.875rem;color: #7986cb;display: block;margin-bottom: 16px;}
+.drop-zone .drop-types {font-size: 0.78rem;color: #9e9e9e;display: block;}
+/* Input de archivo oculto, controlado por la drop zone */
+#inputImagen {display: none;}
+
+/* -------------- VISTA PREVIA DE IMAGEN SELECCIONADA -------------- */
+#contenedorPreview {display: none;margin-top: 20px;}
+.preview-wrapper {position: relative;display: inline-block;border-radius: 8px;overflow: hidden;box-shadow: 0 4px 16px rgba(0,0,0,0.15);max-width: 100%;}
+#imagenPreview {display: block;max-width: 100%;max-height: 260px;object-fit: contain;background: #f5f5f5;}
+.preview-overlay {position: absolute;bottom: 0;left: 0;right: 0;background: linear-gradient(transparent, rgba(0,0,0,0.65));color: #fff;padding: 12px;font-size: 0.8rem;font-weight: 500;}
+
+/* -------------- INFORMACIÓN DEL ARCHIVO SELECCIONADO -------------- */
+#contenedorInfoArchivo {display: none;}
+.info-archivo-grid {display: flex;flex-wrap: wrap;gap: 12px;margin-top: 16px;}
+.info-archivo-item {background: #f5f6ff;border: 1px solid #e8eaf6;border-radius: 8px;padding: 10px 16px;flex: 1;min-width: 130px;}
+.info-archivo-item .info-label {font-size: 0.72rem;color: #7986cb;font-weight: 600;text-transform: uppercase;letter-spacing: 0.5px;display: block;margin-bottom: 4px;}
+.info-archivo-item .info-valor {font-size: 0.92rem;color: #1a237e;font-weight: 600;display: block;word-break: break-all;}
+
+/* -------------- BARRA DE PROGRESO Y ESTADO DE PROCESAMIENTO -------------- */
+#contenedorProgreso {display: none;margin-top: 20px;}
+.progreso-wrapper {background: #e8eaf6;border-radius: 20px;height: 10px;overflow: hidden;margin-bottom: 10px;}
+.progreso-barra {height: 100%;background: linear-gradient(90deg, #3949ab, #7986cb);border-radius: 20px;transition: width 0.4s ease;animation: progreso-animacion 1.5s infinite;}
+@keyframes progreso-animacion {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+.progreso-texto {font-size: 0.875rem;color: #5c6bc0;font-weight: 500;text-align: center;}
+
+/* -------------- ALERTAS DE VALIDACIÓN -------------- */
+#contenedorAlertas {margin-bottom: 16px;}
+.alerta-custom {border-radius: 8px;border: none;padding: 14px 18px;font-size: 0.9rem;font-weight: 500;display: flex;align-items: flex-start;gap: 10px;margin-bottom: 10px;animation: fadeInDown 0.3s ease;}
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+.alerta-custom.alerta-error {background-color: #fce4ec;color: #b71c1c;border-left: 4px solid #e53935;}
+.alerta-custom.alerta-exito {background-color: #e8f5e9;color: #1b5e20;border-left: 4px solid #43a047;}
+.alerta-custom.alerta-advertencia {background-color: #fff8e1;color: #e65100;border-left: 4px solid #fb8c00;}
+.alerta-custom.alerta-info {background-color: #e3f2fd;color: #0d47a1;border-left: 4px solid #1e88e5;}
+.alerta-custom .alerta-icono {font-size: 1.1rem;flex-shrink: 0;margin-top: 1px;}
+
+/* -------------- BOTONES PERSONALIZADOS -------------- */
+.btn-primario {background: linear-gradient(135deg, #3949ab, #5c6bc0);color: #fff !important;border: none;border-radius: 8px;padding: 12px 28px;font-weight: 600;font-size: 0.95rem;letter-spacing: 0.3px;transition: all 0.3s ease;box-shadow: 0 4px 12px rgba(57, 73, 171, 0.35);cursor: pointer;display: inline-flex;align-items: center;gap: 8px;}
+.btn-primario:hover:not(:disabled) {background: linear-gradient(135deg, #283593, #3949ab);box-shadow: 0 6px 18px rgba(57, 73, 171, 0.45);transform: translateY(-1px);color: #fff !important;}
+.btn-primario:active:not(:disabled) {transform: translateY(0);box-shadow: 0 2px 8px rgba(57, 73, 171, 0.3);}
+.btn-primario:disabled,
+.btn-primario.disabled {opacity: 0.6;cursor: not-allowed;transform: none;}
+.btn-secundario {background: #fff;color: #3949ab !important;border: 2px solid #3949ab;border-radius: 8px;padding: 10px 24px;font-weight: 600;font-size: 0.95rem;transition: all 0.3s ease;cursor: pointer;display: inline-flex;align-items: center;gap: 8px;}
+.btn-secundario:hover {background: #e8eaf6;color: #1a237e !important;transform: translateY(-1px);}
+
+/* -------------- PÁGINA DE RESULTADOS -------------- */
+/* Tarjeta de comparación */
+.comparacion-grid {display: grid;grid-template-columns: 1fr auto 1fr;gap: 0;align-items: stretch;margin-bottom: 24px;}
+.comparacion-imagen-card {background: #fff;border-radius: 10px;overflow: hidden;border: 1px solid #e8eaf6;box-shadow: 0 2px 12px rgba(0,0,0,0.07);}
+.comparacion-imagen-card .card-header-custom {padding: 14px 18px;font-weight: 600;font-size: 0.9rem;display: flex;align-items: center;gap: 8px;}
+.comparacion-imagen-card.original .card-header-custom {background: #e8eaf6;color: #1a237e;}
+.comparacion-imagen-card.transformada .card-header-custom {background: #e8f5e9;color: #1b5e20;}
+.comparacion-imagen-card .imagen-resultado {width: 100%;max-height: 280px;object-fit: contain;display: block;background: #f9f9f9;padding: 8px;}
+.comparacion-separador {display: flex;align-items: center;justify-content: center;padding: 0 20px;}
+.separador-flecha {font-size: 2rem;color: #7986cb;display: flex;flex-direction: column;align-items: center;gap: 6px;}
+.separador-flecha span {font-size: 0.75rem;color: #9fa8da;font-weight: 600;text-transform: uppercase;letter-spacing: 0.5px;writing-mode: vertical-rl;}
+/* Tabla de estadísticas */
+.tabla-estadisticas {width: 100%;border-collapse: collapse;font-size: 0.9rem;}
+.tabla-estadisticas th {background: #e8eaf6;color: #1a237e;font-weight: 600;padding: 12px 16px;text-align: left;border-bottom: 2px solid #c5cae9;}
+.tabla-estadisticas td {padding: 11px 16px;border-bottom: 1px solid #f0f0f0;color: #444;}
+.tabla-estadisticas tr:last-child td {border-bottom: none;}
+.tabla-estadisticas tr:hover td {background: #f5f6ff;}
+.tabla-estadisticas .valor-original {color: #5c6bc0;font-weight: 500;}
+.tabla-estadisticas .valor-transformado {color: #43a047;font-weight: 600;}
+/* Tarjeta de ahorro */
+.badge-ahorro {display: inline-flex;align-items: center;gap: 6px;background: linear-gradient(135deg, #43a047, #66bb6a);color: #fff;border-radius: 20px;padding: 6px 18px;font-size: 0.95rem;font-weight: 700;box-shadow: 0 3px 10px rgba(67, 160, 71, 0.35);}
+.badge-ahorro-negativo {background: linear-gradient(135deg, #e53935, #ef5350);box-shadow: 0 3px 10px rgba(229, 57, 53, 0.35);}
+/* Descargar imagen */
+.btn-descargar {background: linear-gradient(135deg, #43a047, #66bb6a);color: #fff !important;border: none;border-radius: 8px;padding: 12px 28px;font-weight: 600;font-size: 0.95rem;cursor: pointer;transition: all 0.3s ease;box-shadow: 0 4px 12px rgba(67, 160, 71, 0.35);display: inline-flex;align-items: center;gap: 8px;text-decoration: none;}
+.btn-descargar:hover {background: linear-gradient(135deg, #388e3c, #43a047);box-shadow: 0 6px 18px rgba(67, 160, 71, 0.45);transform: translateY(-1px);color: #fff !important;text-decoration: none;}
+
+/* -------------- FOOTER -------------- */
+.footer-custom {background: #1a237e;color: rgba(255, 255, 255, 0.6);text-align: center;padding: 20px;font-size: 0.82rem;margin-top: 60px;}
+.footer-custom a {color: #9fa8da;text-decoration: none;}
+
+/* -------------- UTILIDADES -------------- */
+.text-indigo {color: #3949ab !important;}
+
+.mt-20 { margin-top: 20px; }
+.mt-30 { margin-top: 30px; }
+.mb-20 { margin-bottom: 20px; }
+.mb-30 { margin-bottom: 30px; }
+
+/* Ocultar elemento con animación suave */
+.oculto {display: none !important;}
+
+/* Responsive: en móviles, comparación en columna */
+@media (max-width: 767px) {
+    .page-hero h1 {font-size: 1.5rem;}
+    .comparacion-grid {grid-template-columns: 1fr;}
+    .comparacion-separador {padding: 12px 0;}
+    .separador-flecha span {writing-mode: horizontal-tb;}
+    .card-custom {padding: 20px 16px;}
+    .info-archivo-grid {flex-direction: column;}
+}

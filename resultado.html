@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO -->
+    <title>Resultados</title>
+    <meta name="description" content="">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Bootstrap 3.4 CSS (CDN) -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-custom navbar-static-top" role="navigation" >
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html">
+                    Transformación de Imagen
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container" id="contenidoPrincipal" role="main">
+
+        <div id="contenedorError" class="row" style="display:none;">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="card-custom text-center" style="padding: 48px 32px;">
+                    <div style="font-size: 4rem; margin-bottom: 20px;">⚠️</div>
+                    <h2 style="color: #1a237e; font-weight: 700; margin-bottom: 12px;">
+                        No hay resultados disponibles
+                    </h2>
+                    <p style="color: #666; margin-bottom: 28px;">
+                        Para ver los resultados primero debes seleccionar y transformar una imagen
+                        desde el formulario de subida.
+                    </p>
+                    <a href="index.html" class="btn btn-primario">
+                        Ir al formulario
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="contenedorResultado" style="display:none;">
+
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+
+                    <div class="text-center mb-20" id="badgeEstado" aria-live="polite"></div>
+
+                    <section class="card-custom" aria-labelledby="seccionComparacion">
+                        <h2 class="card-title" id="seccionComparacion">
+                            Comparación visual
+                        </h2>
+
+                        <div class="row">
+                            <!-- Imagen original -->
+                            <div class="col-sm-5">
+                                <div class="comparacion-imagen-card original">
+                                    <div class="card-header-custom">
+                                        Imagen Original
+                                    </div>
+                                    <div style="position: relative; text-align: center; padding: 12px; background: #f9f9f9; min-height: 200px; display:flex; align-items:center; justify-content:center;">
+                                        <div id="placeholderOriginal" style="text-align:center; padding: 20px;">
+                                            <div style="font-size:3rem; margin-bottom: 10px; opacity:0.4;">🖼️</div>
+                                            <p style="font-size:0.8rem; color:#9e9e9e; margin:0;">
+                                                Vista previa no disponible<br>
+                                                <em>(la imagen original no se almacena en sesión por seguridad)</em>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-2 hidden-xs" style="display:flex; align-items:center; justify-content:center;">
+                                <div class="separador-flecha" aria-hidden="true">
+                                    <div style="font-size: 1.8rem;">➜</div>
+                                    <div style="font-size: 0.7rem; color:#9fa8da; font-weight:600; text-transform:uppercase; letter-spacing:0.5px; margin-top:6px;">
+                                        JPG
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-5">
+                                <div class="comparacion-imagen-card transformada">
+                                    <div class="card-header-custom">
+                                        Imagen Transformada (JPG)
+                                    </div>
+                                    <div style="text-align: center; padding: 12px; background: #f9f9f9; min-height: 200px; display:flex; align-items:center; justify-content:center;">
+                                        <img id="imagenTransformada" src="" alt="formato JPG" class="imagen-resultado" style="max-width:100%; max-height:260px; object-fit:contain; border-radius:4px;" >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="card-custom" aria-labelledby="seccionEstadisticas">
+                        <h2 class="card-title" id="seccionEstadisticas">
+                            Resumen de la transformación
+                        </h2>
+
+                        <div class="table-responsive">
+                            <table id="tablaEstadisticas" class="tabla-estadisticas" >
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Parámetro</th>
+                                        <th scope="col">Imagen Original</th>
+                                        <th scope="col">Imagen Transformada</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Rellenado dinámicamente por resultado.js -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section class="card-custom" aria-labelledby="seccionAcciones">
+                        <h2 class="card-title" id="seccionAcciones">
+                            Descargar imagen
+                        </h2>
+
+                        <p style="color:#555; font-size:0.9rem; margin-bottom:20px;">
+                            La imagen transformada a JPG está lista. Haz clic en el botón para guardarla en tu dispositivo.
+                        </p>
+
+                        <!-- Aviso si el dataURL no está disponible (imagen muy grande) -->
+                        <div id="avisoDescargaNoDisponible" class="alerta-custom alerta-advertencia" style="display:none;">
+                            <span class="alerta-icono">⚠️</span>
+                            <span>La imagen es demasiado grande para ser almacenada en sesión. Por favor, procesa de nuevo la imagen para descargarla.</span>
+                        </div>
+
+                        <div class="text-center">
+                            <a id="btnDescargar" href="#" download="" class="btn-descargar" role="button" style="display:none;" >
+                                Descargar imagen JPG
+                            </a>
+                        </div>
+                    </section>
+
+                    <div class="text-center mb-30">
+                        <button type="button" id="btnNuevaImagen" lass="btn btn-primario" >
+                            Procesar otra imagen
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+
+    <!-- jQuery 3.7 (CDN) -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap 3.4 JS (CDN) -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- Módulo de transformación (para la función formatearTamano) -->
+    <script src="js/transformer.js"></script>
+
+    <!-- Módulo de la página de resultados -->
+    <script src="js/resultado.js"></script>
+
+</body>
+</html>

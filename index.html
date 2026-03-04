@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO -->
+    <title>Transformación de Imagen</title>
+    <meta name="description" content="">
+    <meta name="robots" content="index, follow">
+
+    <!-- Bootstrap 3.4 CSS (CDN) -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-custom navbar-static-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html">
+                    Transformación de Imagen
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container" id="contenidoPrincipal" role="main">
+
+        <div class="row">
+
+            <div class="col-md-8 col-md-offset-2">
+
+                <div id="contenedorAlertas" role="alert" aria-live="polite"></div>
+
+                <section class="card-custom" aria-labelledby="seccionSubida">
+                    <h2 class="card-title" id="seccionSubida">
+                        Selecciona tu imagen
+                    </h2>
+                    <div id="dropZone" class="drop-zone" role="button" tabindex="0" >
+                        <span class="drop-icon" aria-hidden="true">📂</span>
+                        <span class="drop-title">Arrastra tu imagen aquí</span>
+                        <span class="drop-subtitle">o haz clic para seleccionar desde tu dispositivo</span>
+                        <button type="button" id="btnSeleccionar" class="btn btn-primario">
+                            Examinar archivos
+                        </button>
+                        <span class="drop-types">
+                            Formatos aceptados: JPG, JPEG, PNG, GIF, BMP, WebP, TIFF, SVG · Máx. 20 MB
+                        </span>
+                    </div>
+
+                    <!--
+                        Input de archivo oculto.
+                        La visibilidad se controla mediante la drop zone y el botón.
+                        El atributo 'accept' actúa como primer filtro (no reemplaza la validación JS).
+                    -->
+                    <input type="file" id="inputImagen" name="imagen" accept="image/*" aria-hidden="true" tabindex="-1" >
+
+                    <!-- ── Vista previa de la imagen seleccionada ─────────────── -->
+                    <div id="contenedorPreview" role="region">
+                        <div class="text-center">
+                            <div class="preview-wrapper">
+                                <img id="imagenPreview" src="" alt="Vista previa de la imagen seleccionada" >
+                                <div class="preview-overlay">
+                                    <span id="previewNombre"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Botón para cancelar selección -->
+                        <div class="text-center mt-20">
+                            <button type="button" id="btnLimpiar" class="btn btn-secundario">
+                                Cambiar imagen
+                            </button>
+                        </div>
+                    </div>
+
+                </section>
+
+                <!-- Tarjeta: Información del archivo seleccionado -->
+                <section id="contenedorInfoArchivo" class="card-custom" aria-labelledby="seccionInfo" aria-live="polite" >
+                    <h2 class="card-title" id="seccionInfo">
+                        Información del archivo
+                    </h2>
+
+                    <div class="info-archivo-grid">
+                        <div class="info-archivo-item">
+                            <span class="info-label">Nombre</span>
+                            <span class="info-valor" id="infoNombre">—</span>
+                        </div>
+                        <div class="info-archivo-item">
+                            <span class="info-label">Tipo MIME</span>
+                            <span class="info-valor" id="infoTipo">—</span>
+                        </div>
+                        <div class="info-archivo-item">
+                            <span class="info-label">Peso original</span>
+                            <span class="info-valor" id="infoPeso">—</span>
+                        </div>
+                        <div class="info-archivo-item">
+                            <span class="info-label">Dimensiones</span>
+                            <span class="info-valor" id="infoDimension">—</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Progreso de transformación -->
+                <div id="contenedorProgreso" aria-live="polite">
+                    <div class="card-custom">
+                        <div class="progreso-wrapper">
+                            <div class="progreso-barra" style="width: 100%;"></div>
+                        </div>
+                        <p class="progreso-texto" id="progresoTexto">Procesando imagen...</p>
+                    </div>
+                </div>
+
+                <div class="text-center mb-30">
+                    <button type="button" id="btnProcesar" class="btn btn-primario btn-lg disabled" disabled >
+                        Transformar a JPG
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+
+    <!-- jQuery 3.7 (CDN) -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap 3.4 JS (CDN) -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- Módulo de validación de archivos -->
+    <script src="js/validator.js"></script>
+
+    <!-- Módulo de transformación de imágenes -->
+    <script src="js/transformer.js"></script>
+
+    <!-- Módulo principal de la aplicación (formulario) -->
+    <script src="js/app.js"></script>
+
+</body>
+</html>
