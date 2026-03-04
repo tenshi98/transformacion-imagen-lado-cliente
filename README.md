@@ -73,7 +73,7 @@ Proyecto web que permite transformar imágenes a formato **JPG** directamente en
 1. **Clona el repositorio** o descarga el ZIP del proyecto:
 
    ```bash
-   git clone https://github.com/tu-usuario/transformacion-imagen-lado-cliente.git
+   git clone https://github.com/tenshi98/transformacion-imagen-lado-cliente.git
    ```
 
 2. **Navega al directorio del proyecto:**
@@ -112,38 +112,15 @@ Sin embargo, puedes ajustar los siguientes parámetros editando directamente los
 
 ## 🚀 Cómo ejecutar el proyecto
 
-### Opción 1: Servidor local con Python (recomendado)
+### Abrir directamente el archivo index.html (recomendado)
 
-```bash
-# Python 3
-python3 -m http.server 8080
-
-# Python 2
-python -m SimpleHTTPServer 8080
-```
-
-Luego abre en tu navegador: [http://localhost:8080](http://localhost:8080)
-
-### Opción 2: Extensión Live Server (VS Code)
-
-1. Instala la extensión [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer).
-2. Haz clic derecho en `index.html` → **Open with Live Server**.
-
-### Opción 3: Node.js `serve`
-
-```bash
-npx serve .
-```
-
-> ⚠️ **Importante**: No abras los archivos directamente con `file://` en el navegador, ya que las políticas CORS de algunos navegadores pueden bloquear la lectura de archivos locales y el `sessionStorage` entre páginas puede comportarse de forma diferente.
-
----
+Abrir el archivo directamente con el navegador de tu preferencia y realizar las pruebas
 
 ## 💡 Ejemplos de uso
 
 ### Flujo básico
 
-1. Abre `http://localhost:8080` en tu navegador.
+1. Abre `index.html` en tu navegador.
 2. En la zona de carga (drop zone), **arrastra una imagen PNG** o haz clic en **"Examinar archivos"**.
 3. La app valida el tipo de archivo en tiempo real.
 4. Si la imagen es válida, verás una **vista previa** y la información del archivo.
